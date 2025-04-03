@@ -1,12 +1,14 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import BackArrowIcon from "../icons/back-arrow.svg?react";
 
 type SliderTopHeaderProps = {
-  options: [];
+  backText: ReactNode;
+  currentIndex?: number;
+  totalIndex?: number;
 };
 
 const SliderTopHeader: FC<SliderTopHeaderProps> = (props) => {
-  const { options } = props;
+  const { backText, currentIndex, totalIndex } = props;
 
   return (
     <div
@@ -16,10 +18,14 @@ const SliderTopHeader: FC<SliderTopHeaderProps> = (props) => {
       <div className="flex gap-2 items-center">
         {/* <img src={BackArrowIcon} /> */}
         <BackArrowIcon />
-        <p className="text-white text-base">Header Content</p>
+        <p className="text-white text-base">{backText}</p>
       </div>
-      <p className="text-lg text-white">1/5</p>
-      <div></div>
+      {!!totalIndex && (
+        <p className="text-lg text-white">
+          {currentIndex ?? 0}/{totalIndex}
+        </p>
+      )}
+      <div />
     </div>
   );
 };
