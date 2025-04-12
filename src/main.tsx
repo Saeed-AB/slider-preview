@@ -28,17 +28,19 @@ const rollbarConfig: Rollbar.Configuration = {
 };
 
 function TestError() {
+  const handleChangeInput = () => {
+    throw new Error("Input Change Error");
+  };
+
+  const handleClickButton = () => {
+    throw new Error("Button Click Error");
+  };
+
   return (
     <>
       <h1>Test Rollbar</h1>
-      <button
-        onClick={() => {
-          // This will be caught by the ErrorBoundary
-          throw new Error("Test error");
-        }}
-      >
-        Throw error
-      </button>
+      <input onChange={handleChangeInput} />
+      <button onClick={handleClickButton}>Throw error</button>
     </>
   );
 }
