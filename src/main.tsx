@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { Provider, ErrorBoundary } from "@rollbar/react"; // Provider imports 'rollbar'
 import "./index.css";
 import Rollbar from "rollbar";
+import { useGetVersion } from "./hooks/useGetVersion";
 
 const rollbarConfig: Rollbar.Configuration = {
   accessToken: import.meta.env.VITE_ROLLBAR_ACCESS_TOKEN,
@@ -28,6 +29,7 @@ const rollbarConfig: Rollbar.Configuration = {
 };
 
 function TestError() {
+  useGetVersion()
   const handleChangeInput = () => {
     throw new Error("Input Change Error");
   };
